@@ -97,6 +97,14 @@ DWORD WINAPI DoMagic(LPVOID lpParameter)
                         payloadPath = Path.GetFileName(args[i + 1]);
                     }
                 }
+
+		if (args[i].ToLower().Equals("--realdll") || args[i].ToLower().Equals("-realdll"))
+		{
+    			if (i + 1 < args.Length)
+    			{
+        		realDllName = args[i + 1];
+    			}
+		}
             }
 
             if (string.IsNullOrWhiteSpace(orgDllPath) || !File.Exists(orgDllPath)) {
@@ -109,6 +117,8 @@ DWORD WINAPI DoMagic(LPVOID lpParameter)
                 Console.WriteLine($"[!] shellcode filname/path is empty, bad input!");
                 Environment.Exit(0);
             }
+
+	    
 
 
             //Create an output directory to export stuff too
