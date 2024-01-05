@@ -1,0 +1,9 @@
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\SharpDllProxy.exe
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\SharpDllProxy.dll
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\SharpDllProxy.deps.json
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\SharpDllProxy.runtimeconfig.json
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\SharpDllProxy.pdb
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\PeNet.dll
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\PeNet.Asn1.dll
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\System.Security.Cryptography.Pkcs.dll
+C:\Tools\SharpDllProxy\SharpDllProxy\bin\Release\netcoreapp3.1\app.publish\runtimes\win\lib\netcoreapp3.0\System.Security.Cryptography.Pkcs.dll

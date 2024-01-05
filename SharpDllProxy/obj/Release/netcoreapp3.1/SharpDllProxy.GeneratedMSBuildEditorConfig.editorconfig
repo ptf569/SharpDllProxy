@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = SharpDllProxy
+build_property.ProjectDir = C:\Tools\SharpDllProxy\SharpDllProxy\

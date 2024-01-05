@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "OQHG1opyZZ2D1A1gMCiSvYzpOlLTSS8q4xSNrHN7AaBu7Zz0Kfc0mF0ZnFxkvVq82yJkOj9L5/Si66E+USfWqA==",
+  "success": true,
+  "projectFilePath": "C:\\Tools\\SharpDllProxy\\SharpDllProxy\\SharpDllProxy.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ptf\\.nuget\\packages\\penet\\2.4.0\\penet.2.4.0.nupkg.sha512",
+    "C:\\Users\\ptf\\.nuget\\packages\\penet.asn1\\1.3.4\\penet.asn1.1.3.4.nupkg.sha512",
+    "C:\\Users\\ptf\\.nuget\\packages\\system.security.cryptography.cng\\4.7.0\\system.security.cryptography.cng.4.7.0.nupkg.sha512",
+    "C:\\Users\\ptf\\.nuget\\packages\\system.security.cryptography.pkcs\\4.7.0\\system.security.cryptography.pkcs.4.7.0.nupkg.sha512",
+    "C:\\Users\\ptf\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
+  ],
+  "logs": []
+}
